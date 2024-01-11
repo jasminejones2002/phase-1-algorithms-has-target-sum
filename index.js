@@ -1,17 +1,38 @@
 function hasTargetSum(array, target) {
-  // Write your algorithm here
+  for (let i = 0; i < array.length; i++) {
+    //Use for loop to iterate over each item
+    //n steps 
+    const comp = target - array[i]
+    //for the current number, look for compliment that adds up to targer num (comp = target - current num)
+    //n * n steps (nested loop)
+    for (let j = i + 1; j < array.length; j++) {
+      //iterate through rest of the array
+      if (array[j] === comp) {
+        return true
+      }
+    }
+  }
+  // 1 step
+  return false
 }
 
 /* 
-  Write the Big O time complexity of your function here
+  O(n^2) time complexity
+  O(n) space complexity
 */
 
 /* 
-  Add your pseudocode here
+Use for loop to iterate over each item
+  for the current number, look for compliment that adds up to targer num (comp = target - current num)
+  iterate through rest of the array
+    check if num is the compliment
+    if so, return true
+    else, return false
+
 */
 
 /*
-  Add written explanation of your solution here
+  The code will return true if any pair of the numbers will add up to the target number.
 */
 
 // You can run `node index.js` to view these console logs
@@ -29,6 +50,9 @@ if (require.main === module) {
 
   console.log("Expecting: false");
   console.log("=>", hasTargetSum([1, 2, 5], 4));
+
+  console.log("Expecting: false")
+  console.log("=>", hasTargetSum([5, 10, 15, 20], 32))
 }
 
 module.exports = hasTargetSum;
